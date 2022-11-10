@@ -8,6 +8,10 @@ import { Component } from "@angular/core";
     </header>
     <main>
       <h3>Working with {{ agencies.length }} space agencies</h3>
+      <section>
+        <button (click)="loadAgencies()">All agencies</button>
+        <button (click)="loadFilteredAgencies()">Only actives</button>
+      </section>
       <ul>
         <li *ngFor="let agency of agencies">
           <span [class]="agency.status | lowercase">{{ agency.name }}</span>
@@ -40,14 +44,26 @@ import { Component } from "@angular/core";
   ],
 })
 export class AppComponent {
-  title = "Altia noviembre";
+  title = "Astro Bookings";
   author = "Alberto Basalo";
   repoUrl =
     "https://github.com/TrainingITCourses/altia-angular_intro-noviembre";
   authorUrl = "https://albertobasalo.dev";
-  agencies = [
+  agencies: any[] = [];
+  agenciesRaw = [
     { name: "Space X", range: "Interplanetary", status: "Active" },
     { name: "Blue Origin", range: "Orbital", status: "Active" },
     { name: "Virgin Galactic", range: "Orbital", status: "Pending" },
   ];
+
+  constructor() {
+    this.loadAgencies();
+  }
+
+  loadAgencies() {
+    this.agencies = this.agenciesRaw;
+  }
+  loadFilteredAgencies() {
+    this.agencies = this.agenciesRaw.filter((a) => a.status === "Active");
+  }
 }

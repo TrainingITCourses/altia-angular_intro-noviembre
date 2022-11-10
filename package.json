@@ -10,7 +10,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o --port=4101",
     "build": "ng build",
     "watch": "ng build --watch --configuration development"
   },

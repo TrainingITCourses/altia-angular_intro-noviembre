@@ -20,6 +20,17 @@ import { Component } from "@angular/core";
           <span *ngIf="agency.range !== 'Orbital'">{{ agency.range }} 🪐</span>
         </li>
       </ul>
+      <h3>Offering {{ trips.length }} trips</h3>
+      <ul>
+        <ng-container *ngFor="let trip of trips">
+          <li [class]="trip.status | lowercase">
+            <span>🔭 {{ trip.destination }}</span>
+            <span>🧑🏼‍🚀 {{ trip.places | number: "0.0" }}</span>
+            <span>⤴️ {{ trip.startDate | date: "dd-MMM-yyyy" }}</span>
+            <span>💸 {{ trip.flightPrice | currency }}</span>
+          </li>
+        </ng-container>
+      </ul>
       <router-outlet></router-outlet>
     </main>
     <footer>
@@ -38,6 +49,12 @@ import { Component } from "@angular/core";
         color: green;
       }
       .pending {
+        color: orange;
+      }
+      .confirmed {
+        color: green;
+      }
+      .waiting {
         color: orange;
       }
     `,

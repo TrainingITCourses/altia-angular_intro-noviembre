@@ -1,5 +1,7 @@
 # AltiaAngularIntroNoviembre
 
+> [Code repository](https://github.com/TrainingITCourses/altia-angular_intro-noviembre)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
 
 ## Development server

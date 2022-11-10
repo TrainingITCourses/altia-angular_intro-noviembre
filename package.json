@@ -1,6 +1,13 @@
 {
   "name": "altia-angular-intro-noviembre",
   "version": "0.0.0",
+  "description": "Introductory course of Angular",
+  "homepage": "https://github.com/TrainingITCourses/altia-angular_intro-noviembre",
+  "author": {
+    "name": "Alberto Basalo",
+    "email": "albertobasalo@hotmail.com",
+    "url": "https://albertobasalo.dev"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

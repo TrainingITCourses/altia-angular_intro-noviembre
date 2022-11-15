@@ -15,7 +15,6 @@ import { Component } from "@angular/core";
       <ul>
         <li *ngFor="let agency of agencies">
           <span [class]="agency.status | lowercase">{{ agency.name }}</span>
-          ➖
           <span *ngIf="agency.range === 'Orbital'">{{ agency.range }} 🌍</span>
           <span *ngIf="agency.range !== 'Orbital'">{{ agency.range }} 🪐</span>
         </li>

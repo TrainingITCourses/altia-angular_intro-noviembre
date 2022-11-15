@@ -7,21 +7,6 @@ import { Component } from "@angular/core";
     <app-main></app-main>
     <app-footer></app-footer>
   `,
-  styles: [
-    `
-      .active {
-        color: green;
-      }
-      .pending {
-        color: orange;
-      }
-      .confirmed {
-        color: green;
-      }
-      .waiting {
-        color: orange;
-      }
-    `,
-  ],
+  styles: [],
 })
 export class AppComponent {}

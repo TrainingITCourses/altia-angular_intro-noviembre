@@ -30,7 +30,22 @@ import { Component, OnInit } from "@angular/core";
       <router-outlet></router-outlet>
     </main>
   `,
-  styles: [],
+  styles: [
+    `
+      .active {
+        color: green;
+      }
+      .pending {
+        color: orange;
+      }
+      .confirmed {
+        color: green;
+      }
+      .waiting {
+        color: orange;
+      }
+    `,
+  ],
 })
 export class MainComponent implements OnInit {
   agencies: any[] = [];

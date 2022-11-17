@@ -14,6 +14,9 @@ import { Component, OnInit } from "@angular/core";
       <span>
         <a routerLink="about"> ℹ️ About us </a>
       </span>
+      <span>
+        <a routerLink="contact"> 📧 Contact </a>
+      </span>
     </footer>
   `,
   styles: [],

@@ -4,7 +4,7 @@ import { Component, OnInit } from "@angular/core";
   selector: "app-header",
   template: `
     <header>
-      <strong>{{ title | uppercase }}</strong>
+      <strong routerLink="/">{{ title | uppercase }}</strong>
     </header>
   `,
   styles: [],

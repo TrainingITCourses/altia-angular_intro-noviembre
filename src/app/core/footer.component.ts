@@ -4,13 +4,16 @@ import { Component, OnInit } from "@angular/core";
   selector: "app-footer",
   template: `
     <footer>
-      <p>
+      <span>
         <a href="{{ repoUrl }}" target="_blank">
           {{ title }}
         </a>
         made by
         <a [href]="authorUrl" target="_blank">{{ author }}</a>
-      </p>
+      </span>
+      <span>
+        <a routerLink="about"> ℹ️ About us </a>
+      </span>
     </footer>
   `,
   styles: [],

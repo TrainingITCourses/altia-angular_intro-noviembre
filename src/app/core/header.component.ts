@@ -8,6 +8,7 @@ import { Component, OnInit } from "@angular/core";
         <strong routerLink="/">{{ title | uppercase }}</strong>
         <ul>
           <li routerLink="/agencies"> ➡️ Agencies</li>
+          <li routerLink="/trips"> ➡️ Trips</li>
         </ul>
       </nav>
     </header>

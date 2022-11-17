@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -55,9 +56,13 @@ import { ActivatedRoute } from "@angular/router";
   styles: [],
 })
 export class BookTripComponent implements OnInit {
-  tripId = "unknown";
+  tripId: string = "";
+  form!: FormGroup;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.tripId = this.route.snapshot.params["tripId"];

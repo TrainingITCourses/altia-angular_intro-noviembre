@@ -1,17 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
 
-import { BookTripRoutingModule } from './book-trip-routing.module';
-import { BookTripComponent } from './book-trip.component';
-
+import { ReactiveFormsModule } from "@angular/forms";
+import { BookTripRoutingModule } from "./book-trip-routing.module";
+import { BookTripComponent } from "./book-trip.component";
 
 @NgModule({
-  declarations: [
-    BookTripComponent
-  ],
-  imports: [
-    CommonModule,
-    BookTripRoutingModule
-  ]
+  declarations: [BookTripComponent],
+  imports: [CommonModule, BookTripRoutingModule, ReactiveFormsModule],
 })
-export class BookTripModule { }
+export class BookTripModule {}

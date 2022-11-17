@@ -9,9 +9,9 @@ import { ActivatedRoute } from "@angular/router";
 export class BookTripComponent implements OnInit {
   tripId = "unknown";
 
-  constructor(route: ActivatedRoute) {
-    this.tripId = route.snapshot.params["tripId"];
-  }
+  constructor(private route: ActivatedRoute) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tripId = this.route.snapshot.params["tripId"];
+  }
 }

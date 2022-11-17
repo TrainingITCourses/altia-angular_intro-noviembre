@@ -17,6 +17,11 @@ const routes: Routes = [
     path: "contact",
     component: ContactComponent,
   },
+  {
+    path: "agencies",
+    loadChildren: () =>
+      import("./agencies/agencies.module").then((m) => m.AgenciesModule),
+  },
 ];
 
 @NgModule({

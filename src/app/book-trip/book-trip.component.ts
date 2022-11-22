@@ -17,29 +17,27 @@ import { Booking } from "../core/models/booking.interface";
       <fieldset>
         <div>
           <label for="customerName"> Customer name </label>
-          <pre> Is pristine: {{ form.controls["customerName"].pristine }} </pre>
-          <pre> Is touched: {{ form.get("customerName")?.touched }} </pre>
-          <pre> Is dirty: {{ form.get("customerName")?.dirty }} </pre>
-          <pre> Is valid: {{ form.get("customerName")?.valid }} </pre>
-          <pre> Errors: {{ form.get("customerName")?.errors | json }} </pre>
+          <small *ngIf="mustShowError('customerName')">
+            {{ form.get("customerName")?.errors | json }}
+          </small>
           <input
             type="text"
             id="customerName"
             name="customerName"
-            formControlName="customerName" />
+            formControlName="customerName"
+            [attr.aria-invalid]="isInvalid('customerName')" />
         </div>
         <div>
           <label for="customerEmail"> Customer email </label>
-          <pre> Is pristine: {{ form.get("customerEmail")?.pristine }} </pre>
-          <pre> Is touched: {{ form.get("customerEmail")?.touched }} </pre>
-          <pre> Is dirty: {{ form.get("customerEmail")?.dirty }} </pre>
-          <pre> Is valid: {{ form.get("customerEmail")?.valid }} </pre>
-          <pre> Errors: {{ form.get("customerEmail")?.errors | json }} </pre>
+          <small *ngIf="mustShowError('customerEmail')">
+            {{ form.get("customerEmail")?.errors | json }}
+          </small>
           <input
             type="email"
             id="customerEmail"
             name="customerEmail"
-            formControlName="customerEmail" />
+            formControlName="customerEmail"
+            [attr.aria-invalid]="isInvalid('customerEmail')" />
         </div>
         <div>
           <label for="gender"> Customer gender </label>
@@ -64,11 +62,15 @@ import { Booking } from "../core/models/booking.interface";
         </div>
         <div>
           <label for="seats"> Seats reserved </label>
+          <small *ngIf="mustShowError('seats')">
+            {{ form.get("seats")?.errors | json }}
+          </small>
           <input
             type="number"
             id="seats"
             name="seats"
-            formControlName="seats" />
+            formControlName="seats"
+            [attr.aria-invalid]="isInvalid('seats')" />
         </div>
         <div>
           <label for="premiumFood"> Premium Food </label>
@@ -83,7 +85,9 @@ import { Booking } from "../core/models/booking.interface";
           <select
             id="paymentMethod"
             name="paymentMethod"
-            formControlName="paymentMethod">
+            formControlName="paymentMethod"
+            [attr.aria-invalid]="isInvalid('paymentMethod')">
+            <option value=""> 👇🏼 Choose an option </option>
             <option value="cash"> 💵 Cash </option>
             <option value="credit"> 💳 Credit Card </option>
             <option value="bank">🏦 Bank transfer </option>
@@ -91,13 +95,8 @@ import { Booking } from "../core/models/booking.interface";
           </select>
         </div>
       </fieldset>
-      <button type="submit">Book the trip</button>
+      <button type="submit" [disabled]="form.invalid">Book the trip</button>
     </form>
-    <pre> Is valid: {{ form.valid }} </pre>
-    <pre> Is pristine: {{ form.pristine }} </pre>
-    <pre> Is touched: {{ form.touched }} </pre>
-    <pre> Is dirty: {{ form.dirty }} </pre>
-    <pre> {{ form.value | json }} </pre>
   `,
   styles: [],
 })
@@ -114,7 +113,7 @@ export class BookTripComponent implements OnInit {
     this.tripId = this.route.snapshot.params["tripId"];
     this.form = this.formBuilder.group({
       customerName: [
-        "E. Musk",
+        "",
         [
           Validators.required,
           Validators.minLength(3),
@@ -122,7 +121,7 @@ export class BookTripComponent implements OnInit {
         ],
       ],
       customerEmail: [
-        "elon@mars.com",
+        "",
         [
           Validators.required,
           Validators.email,
@@ -130,20 +129,33 @@ export class BookTripComponent implements OnInit {
           Validators.maxLength(20),
         ],
       ],
-      gender: new FormControl("male"),
-      seats: new FormControl(5, [
+      gender: new FormControl(""),
+      seats: new FormControl(1, [
         Validators.required,
         Validators.min(1),
         Validators.max(5),
       ]),
       premiumFood: true,
-      paymentMethod: ["cash", Validators.required],
+      paymentMethod: ["", Validators.required],
     });
+  }
+
+  mustShowError(controlName: string) {
+    const control = this.form.get(controlName);
+    if (!control) return false;
+    return control.invalid && (control.dirty || control.touched);
+  }
+
+  isInvalid(controlName: string) {
+    const control = this.form.get(controlName);
+    if (!control) return false;
+    return control.invalid;
   }
 
   onSubmit() {
     const formValue: Partial<Booking> = this.form.value;
     console.log(formValue);
+    if (this.form.invalid) return;
     const booking: Partial<Booking> = {
       ...formValue,
       date: new Date().toISOString(),

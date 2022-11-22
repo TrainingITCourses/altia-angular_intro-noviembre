@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { Booking } from "../core/models/booking.interface";
 
 @Component({
   selector: "app-book-trip",
   template: `
     <h3> Book a trip </h3>
     <h2> {{ tripId }} </h2>
-    <form>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <fieldset>
         <div>
           <label for="customerName"> Customer name </label>
@@ -92,12 +93,25 @@ export class BookTripComponent implements OnInit {
   ngOnInit(): void {
     this.tripId = this.route.snapshot.params["tripId"];
     this.form = this.formBuilder.group({
-      customerName: "",
-      customerEmail: "",
-      gender: "",
-      seats: 0,
-      premiumFood: false,
-      paymentMethod: "",
+      customerName: "E. Musk",
+      customerEmail: "elon@mars.com",
+      gender: "male",
+      seats: 5,
+      premiumFood: true,
+      paymentMethod: "cash",
     });
+  }
+
+  onSubmit() {
+    const formValue: Partial<Booking> = this.form.value;
+    console.log(formValue);
+    const booking: Partial<Booking> = {
+      ...formValue,
+      date: new Date().toISOString(),
+      id: "1",
+      status: "pending",
+      tripId: this.tripId,
+    };
+    console.log(booking);
   }
 }

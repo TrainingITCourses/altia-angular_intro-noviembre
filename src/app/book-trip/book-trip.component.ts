@@ -12,6 +12,9 @@ import { Booking } from "../core/models/booking.interface";
       <fieldset>
         <div>
           <label for="customerName"> Customer name </label>
+          <pre> Is pristine: {{ form.controls["customerName"].pristine }} </pre>
+          <pre> Is touched: {{ form.get("customerName")?.touched }} </pre>
+          <pre> Is dirty: {{ form.get("customerName")?.dirty }} </pre>
           <input
             type="text"
             id="customerName"
@@ -20,6 +23,9 @@ import { Booking } from "../core/models/booking.interface";
         </div>
         <div>
           <label for="customerEmail"> Customer email </label>
+          <pre> Is pristine: {{ form.get("customerEmail")?.pristine }} </pre>
+          <pre> Is touched: {{ form.get("customerEmail")?.touched }} </pre>
+          <pre> Is dirty: {{ form.get("customerEmail")?.dirty }} </pre>
           <input
             type="email"
             id="customerEmail"
@@ -78,6 +84,10 @@ import { Booking } from "../core/models/booking.interface";
       </fieldset>
       <button type="submit">Book the trip</button>
     </form>
+    <pre> Is pristine: {{ form.pristine }} </pre>
+    <pre> Is touched: {{ form.touched }} </pre>
+    <pre> Is dirty: {{ form.dirty }} </pre>
+    <pre> {{ form.value | json }} </pre>
   `,
   styles: [],
 })

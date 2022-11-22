@@ -66,5 +66,6 @@ export class BookTripComponent implements OnInit {
 
   ngOnInit(): void {
     this.tripId = this.route.snapshot.params["tripId"];
+    this.form = this.formBuilder.group({});
   }
 }

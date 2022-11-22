@@ -11,38 +11,63 @@ import { ActivatedRoute } from "@angular/router";
       <fieldset>
         <div>
           <label for="customerName"> Customer name </label>
-          <input type="text" id="customerName" />
+          <input
+            type="text"
+            id="customerName"
+            name="customerName"
+            formControlName="customerName" />
         </div>
         <div>
           <label for="customerEmail"> Customer email </label>
-          <input type="email" id="customerEmail" />
+          <input
+            type="email"
+            id="customerEmail"
+            name="customerEmail"
+            formControlName="customerEmail" />
         </div>
         <div>
-          <label for="customerGender"> Customer gender </label>
+          <label for="gender"> Customer gender </label>
           <span>
-            <input type="radio" name="customerGender" value="male" id="male" />
+            <input
+              type="radio"
+              name="gender"
+              value="male"
+              id="male"
+              formControlName="gender" />
             <label for="male">👨🏼‍🦰 Masculine</label>
           </span>
           <span>
             <input
               type="radio"
-              name="customerGender"
+              name="gender"
               value="female"
-              id="female" />
+              id="female"
+              formControlName="gender" />
             <label for="female">👩🏼‍🦰 Feminine</label>
           </span>
         </div>
         <div>
           <label for="seats"> Seats reserved </label>
-          <input type="number" id="seats" />
+          <input
+            type="number"
+            id="seats"
+            name="seats"
+            formControlName="seats" />
         </div>
         <div>
           <label for="premiumFood"> Premium Food </label>
-          <input type="checkbox" id="premiumFood" />
+          <input
+            type="checkbox"
+            id="premiumFood"
+            name="premiumFood"
+            formControlName="premiumFood" />
         </div>
         <div>
           <label for="paymentMethod"> Payment method </label>
-          <select id="paymentMethod">
+          <select
+            id="paymentMethod"
+            name="paymentMethod"
+            formControlName="paymentMethod">
             <option value="cash"> 💵 Cash </option>
             <option value="credit"> 💳 Credit Card </option>
             <option value="bank">🏦 Bank transfer </option>
@@ -66,6 +91,13 @@ export class BookTripComponent implements OnInit {
 
   ngOnInit(): void {
     this.tripId = this.route.snapshot.params["tripId"];
-    this.form = this.formBuilder.group({});
+    this.form = this.formBuilder.group({
+      customerName: "",
+      customerEmail: "",
+      gender: "",
+      seats: 0,
+      premiumFood: false,
+      paymentMethod: "",
+    });
   }
 }

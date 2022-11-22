@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Agency } from "../core/models/agency.interface";
 
 @Component({
   selector: "app-agencies",
@@ -28,8 +29,8 @@ import { Component, OnInit } from "@angular/core";
   ],
 })
 export class AgenciesComponent implements OnInit {
-  agencies: any[] = [];
-  agenciesRaw = [
+  agencies: Partial<Agency>[] = [];
+  agenciesRaw: Agency[] = [
     { name: "Space X", range: "Interplanetary", status: "Active" },
     { name: "Blue Origin", range: "Orbital", status: "Active" },
     { name: "Virgin Galactic", range: "Orbital", status: "Pending" },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Trip } from "../core/models/trip.interface";
 
 @Component({
   selector: "app-trips",
@@ -30,7 +31,7 @@ import { Component, OnInit } from "@angular/core";
   ],
 })
 export class TripsComponent implements OnInit {
-  trips = [
+  trips: Trip[] = [
     {
       id: "space-y-moon-1",
       agencyId: "space-y",

@@ -1,5 +1,5 @@
-interface Agency {
-  id: string;
+export interface Agency {
+  id?: string;
   name: string;
   range: string;
   status: string;

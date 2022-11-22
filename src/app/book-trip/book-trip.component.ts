@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Booking } from "../core/models/booking.interface";
+import { FormFeedbackService } from "../core/services/form-feedback.service";
 
 @Component({
   selector: "app-book-trip",
@@ -106,7 +107,8 @@ export class BookTripComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private formFeedback: FormFeedbackService
   ) {}
 
   ngOnInit(): void {
@@ -141,15 +143,11 @@ export class BookTripComponent implements OnInit {
   }
 
   mustShowError(controlName: string) {
-    const control = this.form.get(controlName);
-    if (!control) return false;
-    return control.invalid && (control.dirty || control.touched);
+    return this.formFeedback.mustShowError(this.form, controlName);
   }
 
   isInvalid(controlName: string) {
-    const control = this.form.get(controlName);
-    if (!control) return false;
-    return control.invalid;
+    return this.formFeedback.isInvalid(this.form, controlName);
   }
 
   onSubmit() {

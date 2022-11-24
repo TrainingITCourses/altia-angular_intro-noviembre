@@ -1,8 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Agency } from "../models/agency.interface";
+import { Booking } from "../models/booking.interface";
 import { Trip } from "../models/trip.interface";
 
 @Injectable({
@@ -13,11 +13,15 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  getAgencies$(): Observable<Agency[]> {
+  getAgencies$() {
     return this.http.get<Agency[]>(`${this.apiUrl}/agencies`);
   }
 
-  getTrips$(): Observable<Trip[]> {
+  getTrips$() {
     return this.http.get<Trip[]>(`${this.apiUrl}/trips`);
+  }
+
+  postBooking$(booking: Booking) {
+    return this.http.post<Booking>(`${this.apiUrl}/bookings`, booking);
   }
 }

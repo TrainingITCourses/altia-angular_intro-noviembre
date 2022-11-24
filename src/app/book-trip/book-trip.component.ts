@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { Booking } from "../core/models/booking.interface";
+import { ApiService } from "../core/services/api.service";
 import { FormFeedbackService } from "../core/services/form-feedback.service";
 
 @Component({
@@ -109,14 +110,15 @@ export class BookTripComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private formFeedback: FormFeedbackService
+    private formFeedback: FormFeedbackService,
+    private api: ApiService
   ) {}
 
   ngOnInit(): void {
     this.tripId = this.route.snapshot.params["tripId"];
     this.form = this.formBuilder.group({
       customerName: [
-        "",
+        "E. Musk",
         [
           Validators.required,
           Validators.minLength(3),
@@ -124,22 +126,22 @@ export class BookTripComponent implements OnInit {
         ],
       ],
       customerEmail: [
-        "",
+        "elon@musk.com",
         [
           Validators.required,
           Validators.email,
           Validators.minLength(5),
-          Validators.maxLength(20),
+          Validators.maxLength(50),
         ],
       ],
-      gender: new FormControl(""),
+      gender: new FormControl("male"),
       seats: new FormControl(1, [
         Validators.required,
         Validators.min(1),
         Validators.max(5),
       ]),
       premiumFood: true,
-      paymentMethod: ["", Validators.required],
+      paymentMethod: ["cash", Validators.required],
     });
   }
 
@@ -155,13 +157,14 @@ export class BookTripComponent implements OnInit {
     const formValue: Partial<Booking> = this.form.value;
     console.log(formValue);
     if (this.form.invalid) return;
-    const booking: Partial<Booking> = {
+    const booking: Booking = {
       ...formValue,
       date: new Date().toISOString(),
       id: "1",
       status: "pending",
       tripId: this.tripId,
-    };
+    } as Booking;
     console.log(booking);
+    this.api.postBooking$(booking).subscribe();
   }
 }

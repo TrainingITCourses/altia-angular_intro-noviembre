@@ -81,5 +81,18 @@
       "premiumFoodPrice": 1000
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "customerName": "E. Musk",
+      "customerEmail": "elon@musk.com",
+      "gender": "male",
+      "seats": 1,
+      "premiumFood": true,
+      "paymentMethod": "cash",
+      "date": "2022-11-24T11:26:54.434Z",
+      "id": "1",
+      "status": "pending",
+      "tripId": "space-y-moon-1"
+    }
+  ]
 }

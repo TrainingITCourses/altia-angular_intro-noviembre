@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Agency } from "../core/models/agency.interface";
+import { ApiService } from "../core/services/api.service";
 
 @Component({
   selector: "app-agencies",
@@ -30,17 +31,20 @@ import { Agency } from "../core/models/agency.interface";
 })
 export class AgenciesComponent implements OnInit {
   agencies: Partial<Agency>[] = [];
-  agenciesRaw: Agency[] = [
-    { name: "Space X", range: "Interplanetary", status: "Active" },
-    { name: "Blue Origin", range: "Orbital", status: "Active" },
-    { name: "Virgin Galactic", range: "Orbital", status: "Pending" },
-  ];
-  constructor() {
+  agenciesRaw: Agency[] = [];
+
+  constructor(private api: ApiService) {
     this.loadAgencies();
   }
 
   loadAgencies() {
-    this.agencies = this.agenciesRaw;
+    console.log("Loading agencies...");
+    this.api.getAgencies$().subscribe((agencies) => {
+      this.agenciesRaw = agencies;
+      this.agencies = agencies;
+      console.log("1️⃣ antes en el espacio agencies: " + this.agencies.length);
+    });
+    console.log("0️⃣ antes en el tiempo agencies: " + this.agencies.length);
   }
   loadFilteredAgencies() {
     this.agencies = this.agenciesRaw.filter((a) => a.status === "Active");

@@ -8,5 +8,6 @@ import { BookTripComponent } from "./book-trip.component";
 @NgModule({
   declarations: [BookTripComponent],
   imports: [CommonModule, BookTripRoutingModule, ReactiveFormsModule],
+  providers: [],
 })
 export class BookTripModule {}

@@ -100,6 +100,7 @@ import { FormFeedbackService } from "../core/services/form-feedback.service";
     </form>
   `,
   styles: [],
+  providers: [],
 })
 export class BookTripComponent implements OnInit {
   tripId: string = "";

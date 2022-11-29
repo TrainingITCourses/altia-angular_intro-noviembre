@@ -105,6 +105,18 @@
       "id": "space-y-mars-2-mark@fb.com",
       "status": "pending",
       "tripId": "space-y-mars-2"
+    },
+    {
+      "customerName": "bill",
+      "customerEmail": "bill@gates.org",
+      "gender": "male",
+      "seats": 1,
+      "premiumFood": true,
+      "paymentMethod": "credit",
+      "date": "2022-11-29T11:12:00.701Z",
+      "id": "green-origin-low-orbit-3-bill@gates.org",
+      "status": "pending",
+      "tripId": "green-origin-low-orbit-3"
     }
   ]
 }

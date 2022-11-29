@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Agency } from "../core/models/agency.interface";
+import { Trip } from "../core/models/trip.interface";
 import { ApiService } from "../core/services/api.service";
 
 @Component({
@@ -8,16 +9,19 @@ import { ApiService } from "../core/services/api.service";
     <app-agencies
       [agencies]="agenciesApi"
       (load)="onLoad($event)"></app-agencies>
-    <app-trips></app-trips>
+    <app-trips [trips]="tripsApi" [errorMessage]="errorMessageApi"></app-trips>
   `,
   styles: [],
 })
 export class HomeComponent implements OnInit {
   agenciesApi: Partial<Agency>[] = [];
   agenciesRawApi: Agency[] = [];
+  tripsApi: Trip[] = [];
+  errorMessageApi = "";
 
   constructor(private api: ApiService) {
     this.loadAgencies();
+    this.loadTrips();
   }
 
   ngOnInit(): void {}
@@ -32,6 +36,21 @@ export class HomeComponent implements OnInit {
       );
     });
     console.log("0️⃣ antes en el tiempo agencies: " + this.agenciesApi.length);
+  }
+
+  loadTrips() {
+    // this.api.getTrips$().subscribe((trips) => {
+    //   this.trips = trips;
+    // });
+    // this.api.getTrips$().subscribe((trips) => (this.trips = trips));
+    // this.api.getTrips$().subscribe(
+    //   (trips) => (this.trips = trips),
+    //   (error) => (this.errorMessage = error.message)
+    // );
+    this.api.getTrips$().subscribe({
+      next: (trips) => (this.tripsApi = trips),
+      error: (error) => (this.errorMessageApi = error.message),
+    });
   }
 
   onLoad(filter: string) {

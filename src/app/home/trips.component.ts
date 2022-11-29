@@ -1,6 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Trip } from "../core/models/trip.interface";
-import { ApiService } from "../core/services/api.service";
 
 @Component({
   selector: "app-trips",
@@ -33,27 +32,8 @@ import { ApiService } from "../core/services/api.service";
   ],
 })
 export class TripsComponent implements OnInit {
-  trips: Trip[] = [];
-  errorMessage = "";
-
-  constructor(private api: ApiService) {
-    this.loadTrips();
-  }
-
-  loadTrips() {
-    // this.api.getTrips$().subscribe((trips) => {
-    //   this.trips = trips;
-    // });
-    // this.api.getTrips$().subscribe((trips) => (this.trips = trips));
-    // this.api.getTrips$().subscribe(
-    //   (trips) => (this.trips = trips),
-    //   (error) => (this.errorMessage = error.message)
-    // );
-    this.api.getTrips$().subscribe({
-      next: (trips) => (this.trips = trips),
-      error: (error) => (this.errorMessage = error.message),
-    });
-  }
+  @Input() trips: Trip[] = [];
+  @Input() errorMessage = "";
 
   ngOnInit(): void {}
 }

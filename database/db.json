@@ -93,6 +93,18 @@
       "id": "1",
       "status": "pending",
       "tripId": "space-y-moon-1"
+    },
+    {
+      "customerName": "Mark Z.",
+      "customerEmail": "mark@fb.com",
+      "gender": "male",
+      "seats": 2,
+      "premiumFood": false,
+      "paymentMethod": "crypto",
+      "date": "2022-11-29T09:22:44.686Z",
+      "id": "space-y-mars-2-mark@fb.com",
+      "status": "pending",
+      "tripId": "space-y-mars-2"
     }
   ]
 }

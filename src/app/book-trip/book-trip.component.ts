@@ -99,6 +99,7 @@ import { FormFeedbackService } from "../core/services/form-feedback.service";
       </fieldset>
       <button type="submit" [disabled]="form.invalid">Book the trip</button>
     </form>
+    <pre>{{ errorMessage }}</pre>
   `,
   styles: [],
   providers: [],
@@ -106,6 +107,10 @@ import { FormFeedbackService } from "../core/services/form-feedback.service";
 export class BookTripComponent implements OnInit {
   tripId: string = "";
   form!: FormGroup;
+  errorMessage: string = "";
+
+  // ToDo: Container presenters
+  // ngIf pipe async
 
   constructor(
     private route: ActivatedRoute,
@@ -160,11 +165,14 @@ export class BookTripComponent implements OnInit {
     const booking: Booking = {
       ...formValue,
       date: new Date().toISOString(),
-      id: "1",
+      id: this.tripId + "-" + formValue.customerEmail,
       status: "pending",
       tripId: this.tripId,
     } as Booking;
     console.log(booking);
-    this.api.postBooking$(booking).subscribe();
+    this.api.postBooking$(booking).subscribe({
+      next: (booking) => this.form.reset(),
+      error: (error) => (this.errorMessage = error.message),
+    });
   }
 }

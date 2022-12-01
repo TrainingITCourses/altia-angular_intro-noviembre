@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { map } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Agency } from "../models/agency.interface";
 import { Booking } from "../models/booking.interface";
@@ -15,6 +16,16 @@ export class ApiService {
 
   getAgencies$() {
     return this.http.get<Agency[]>(`${this.apiUrl}/agencies`);
+  }
+
+  getActiveAgencies$() {
+    return this.getAgencies$().pipe(
+      map((agencies) => agencies.filter((a) => a.status === "Actibe")),
+      map((agencies) => {
+        if (agencies.length > 0) return agencies;
+        else throw new Error("No active agencies found");
+      })
+    );
   }
 
   postAgency$(agency: Agency) {

@@ -1,3 +1,10 @@
-<app-agencies-table [agencies]="[]" (delete)="onDelete($event)">
-</app-agencies-table>
+<ng-container *ngIf="agencies$ | async as agencies; else loading">
+  <app-agencies-table [agencies]="agencies" (delete)="onDelete($event)">
+  </app-agencies-table>
+</ng-container>
+<ng-template #loading>
+  <pre> ⌛ Loading...</pre>
+</ng-template>
+<pre>{{ errorMessage }}</pre>
+
 <app-agency-form (save)="onSave($event)"> </app-agency-form>

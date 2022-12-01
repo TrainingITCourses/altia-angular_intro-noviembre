@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { catchError, of, tap } from "rxjs";
 import { Agency } from "../core/models/agency.interface";
 import { ApiService } from "../core/services/api.service";
 
@@ -8,13 +9,20 @@ import { ApiService } from "../core/services/api.service";
   styleUrls: ["./agencies.component.css"],
 })
 export class AgenciesComponent implements OnInit {
-  constructor(private api: ApiService) {}
+  agencies$ = this.api.getActiveAgencies$().pipe(
+    tap((activeAgencies) => console.log(activeAgencies)),
+    catchError((err) => {
+      this.errorMessage = err.message;
+      return of([]);
+    })
+  );
+  errorMessage = "";
 
-  loadAgencies() {}
+  constructor(private api: ApiService) {}
 
   onDelete(agencyId: string) {}
 
-  onSave(agency: Agency) {}
+  onSave(agency: Agency | null) {}
 
   ngOnInit(): void {}
 }

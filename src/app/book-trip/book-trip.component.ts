@@ -21,7 +21,6 @@ export class BookTripComponent implements OnInit {
   errorMessage: string = "";
 
   // ToDo: Container presenters
-  // ngIf pipe async
 
   constructor(
     private route: ActivatedRoute,

@@ -17,6 +17,14 @@ export class ApiService {
     return this.http.get<Agency[]>(`${this.apiUrl}/agencies`);
   }
 
+  postAgency$(agency: Agency) {
+    return this.http.post<Agency>(`${this.apiUrl}/agencies`, agency);
+  }
+
+  deleteAgency$(agency: Agency) {
+    return this.http.delete<Agency>(`${this.apiUrl}/agencies/${agency.id}`);
+  }
+
   getTrips$() {
     return this.http.get<Trip[]>(`${this.apiUrl}/trips`);
   }

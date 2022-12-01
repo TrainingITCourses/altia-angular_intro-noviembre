@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
+import { ApiService } from "../core/services/api.service";
 
 @Component({
   selector: "app-agencies",
-  template: ` <h2> Agencies administration </h2> `,
-  styles: [],
+  templateUrl: "./agencies.component.html",
+  styleUrls: ["./agencies.component.css"],
 })
 export class AgenciesComponent implements OnInit {
-  constructor() {}
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {}
 }

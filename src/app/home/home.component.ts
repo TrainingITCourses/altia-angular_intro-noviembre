@@ -9,7 +9,7 @@ import { ApiService } from "../core/services/api.service";
     <app-agencies
       [agencies]="agenciesApi"
       (load)="onLoad($event)"></app-agencies>
-    <app-trips [trips]="tripsApi" [errorMessage]="errorMessageApi"></app-trips>
+    <app-trips [trips]="tripsApi" [errorMessage]="errorMessageApi"> </app-trips>
   `,
   styles: [],
 })

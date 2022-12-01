@@ -1,14 +1,3 @@
-<p>agencies works!</p>
-<table>
-  <thead>
-    <tr>
-      <td> Name </td>
-    </tr>
-  </thead>
-</table>
-<form>
-  <fieldset>
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" />
-  </fieldset>
-</form>
+<app-agencies-table [agencies]="[]" (delete)="onDelete($event)">
+</app-agencies-table>
+<app-agency-form (save)="onSave($event)"> </app-agency-form>
